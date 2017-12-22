@@ -2,7 +2,7 @@
 
 1. Clone the repo to your workspace `https://github.com/srikanthmalla/sync_data.git`
 
-2. go the package `cd sync_data`
+2. go inside the package `cd sync_data`
 
 3. Download the ros_bag file and save it as `input_new.bag` in the project folder, this current version synchronizes `velodyne_points`(PointCloud2) ~10 Hz and `imu/data`(Imu)~200Hz. Around 200/10 ~20 imu points lie between two frames of velodyne topic.
 
