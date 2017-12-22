@@ -14,25 +14,28 @@ Sync::Sync(){
 }
 void Sync::imu_callback(const sensor_msgs::ImuConstPtr& imu_data){
 	//writing imu files
-	imu_filename<<imu_folder<<"imu_"<<frame_number<<".txt";
-	writer.imu2txt(imu_filename.str(),imu_data);
+	imu_filename<<imu_folder<<"imu_00000"<<frame_number<<".txt";
+	writer.imu2txt(imu_filename.str(),imu_data,counter);
 	imu_filename.str(std::string());
+	counter++;
 }
 void Sync::imu_pointcloud(const sensor_msgs::ImuConstPtr& imu_data, const sensor_msgs::PointCloud2ConstPtr& pointcoud_data){
-	frame_number=frame_number+1;
+	frame_number++;
+	counter=0;
 	//writing pointcloud to ply files
-	ply_filename<<pcl_folder<<"pointcloud_"<<frame_number<<".ply";
+	ply_filename<<pcl_folder<<"pointcloud_00000"<<frame_number<<".ply";
 	writer.pointcloud2ply(ply_filename.str(),pointcoud_data);
 	ply_filename.str(std::string());
 }
 void Sync::imu_laserscan(const sensor_msgs::ImuConstPtr& imu_data, const sensor_msgs::LaserScanConstPtr& laserscan_data){
-	frame_number=frame_number+1;
-	ROS_DEBUG("Frame number: %d", frame_number);
+	frame_number++;
+	counter=0;
+	std::cout<<"\rFrame number: "<< frame_number<<std::flush;
 	sensor_msgs::PointCloud2* cloud=new sensor_msgs::PointCloud2;
 	sensor_msgs::PointCloud2ConstPtr cloudPtr(cloud);
 	projector_.projectLaser(*laserscan_data, *cloud);
 	//writing pointcloud to ply files
-	ply_filename<<pcl_folder<<"pointcloud_"<<frame_number<<".ply";
+	ply_filename<<pcl_folder<<"pointcloud_00000"<<frame_number<<".ply";
 	writer.pointcloud2ply(ply_filename.str(),cloudPtr);
 	ply_filename.str(std::string());
 }

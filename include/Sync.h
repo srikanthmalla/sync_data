@@ -25,6 +25,7 @@ private:
 	ros::NodeHandle nh_;
 	ros::Subscriber imu_subscriber;
 	int frame_number=0;
+	int counter=0;
 	std::string imu_folder=	ros::package::getPath("sync_data")+"/imu/";
 	std::string pcl_folder= ros::package::getPath("sync_data")+"/pointcloud/";
 	std::stringstream imu_filename;
