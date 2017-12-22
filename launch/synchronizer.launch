@@ -1,6 +1,6 @@
 <launch>
 <!-- rosbag -->
-<node pkg="rosbag" type="play" name="player"  args="$(find sync_data)/mit.bag"/>
+<node pkg="rosbag" type="play" name="player"  args="$(find sync_data)/input_new.bag"/>
 <!-- lidar_imu.bag"/> -s 264 -u 90 -->
 	
 <!-- Synchronizer Node -->
