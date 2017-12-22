@@ -5,14 +5,18 @@
 #include <iostream>
 #include <sensor_msgs/Imu.h>
 #include <sensor_msgs/PointCloud2.h>
-
+#include "Filewriter.h"
 
 using namespace sensor_msgs;
 using namespace message_filters;
 void callback(const ImuConstPtr& imu_data, const PointCloud2ConstPtr& pointcoud_data)
 {
+
+	Filewriter writer;
 	std::cout<< "callback"<<"\n";
 	ROS_INFO_STREAM("Imu data " << imu_data << "\n");
+
+
 }
 int main(int argc, char* argv[])
 {

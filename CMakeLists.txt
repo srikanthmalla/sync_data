@@ -6,17 +6,25 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   sensor_msgs
   message_filters
+  pcl_conversions
+  pcl_ros
 )
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+find_package( PCL REQUIRED )
+include_directories(${PCL_INCLUDE_DIRS} )
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
+
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES lesson_simple_parameters
-   CATKIN_DEPENDS roscpp std_msgs sensor_msgs message_filters
+   INCLUDE_DIRS include 
+   CATKIN_DEPENDS roscpp sensor_msgs
 )
 
 include_directories(
-# include
   ${catkin_INCLUDE_DIRS}
+  include
 )
 
 add_executable(synchronizer_node src/synchronizer_node.cpp)

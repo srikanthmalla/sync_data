@@ -1,6 +1,6 @@
 <launch>
 <!-- rosbag -->
-<node pkg="rosbag" type="play" name="player" output="screen" args="-s 264 -u 30 /home/malla/lidar_imu.bag /imu0:=/imu/data_raw"/>
+<node pkg="rosbag" type="play" name="player" output="screen" args="-s 264 -u 90 /home/malla/lidar_imu.bag"/>
 <!-- Synchronizer Node -->
 <!-- <node name="synchronizer_node" pkg="sync_data"
   type="synchronizer_node" required="true" output="screen">
