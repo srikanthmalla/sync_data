@@ -9,28 +9,14 @@
 #include <pcl/io/ply_io.h>
 #include <iostream>
 #include <fstream>
+#include <sys/stat.h>
+#include<sys/types.h>
 
 class Filewriter{
 	public:
+		void createfolder(const std::string& folder);
 		void imu2txt(const std::string& file_name, const sensor_msgs::ImuConstPtr& imu_data);
 		void pointcloud2ply(const std::string& file_name,const sensor_msgs::PointCloud2ConstPtr& pointcoud_data);
 };
 
-void Filewriter::imu2txt(const std::string& file_name, const sensor_msgs::ImuConstPtr& imu_data){
-  std::ofstream myfile;
-  myfile.open (file_name);
-  myfile << *imu_data;
-  myfile.close();
-}
-
-void Filewriter::pointcloud2ply(const std::string& file_name,const sensor_msgs::PointCloud2ConstPtr& pointcoud_data){
-	pcl::PCLPointCloud2* cloud = new pcl::PCLPointCloud2; 
-	pcl::PCLPointCloud2ConstPtr cloudPtr(cloud);
-	pcl::PCLPointCloud2 cloud_filtered;
-	// Convert to PCL data type
-	pcl_conversions::toPCL(*pointcoud_data, *cloud);
-	// std::string file_name="pointcloud_000001.ply";
-	pcl::PLYWriter ply_writer;
-	ply_writer.write(file_name,cloudPtr);
-}
 #endif

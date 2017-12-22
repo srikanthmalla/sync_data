@@ -1,0 +1,1 @@
+curl --progress-bar http://infinity.csail.mit.edu/data/2011/2011-01-19-07-49-38.bag -o mit.bag

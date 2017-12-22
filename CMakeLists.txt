@@ -8,6 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   message_filters
   pcl_conversions
   pcl_ros
+  laser_geometry
 )
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
@@ -27,5 +28,5 @@ include_directories(
   include
 )
 
-add_executable(synchronizer_node src/synchronizer_node.cpp)
+add_executable(synchronizer_node src/synchronizer_node.cpp src/Sync.cpp src/Filewriter.cpp)
 target_link_libraries(synchronizer_node ${catkin_LIBRARIES})
